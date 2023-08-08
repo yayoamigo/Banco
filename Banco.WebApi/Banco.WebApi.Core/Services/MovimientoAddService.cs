@@ -26,7 +26,6 @@ namespace Banco.WebApi.Core.Services
 
         public async Task<MovimientoResponse> AddMovimiento(MovimientoAddRequest request)
         {
-
             if (request == null) throw new ArgumentNullException(nameof(request));
 
             ValidationHelper.ModelValidation(request);
@@ -42,11 +41,24 @@ namespace Banco.WebApi.Core.Services
             {
                 throw new ArgumentException("El valor no puede ser 0");
             }
+
+            if (cuenta.SaldoInicial == 0 && request.TipoMovimiento == "Debito")
+            {
+                throw new InvalidOperationException("Saldo no disponible");
+            }
+
+            decimal limiteDiarioRetiro = 1000;
+            decimal totalRetiradoHoy = await _MovimientosRepository.GetTotalRetiradoHoy(request.NumeroCuenta);
+            
+
+            if (request.Valor < 0 && (-totalRetiradoHoy) + (- request.Valor) > limiteDiarioRetiro)
+            {
+                throw new InvalidOperationException("Cupo diario excedido");
+            }
+
             string tipoMovimiento = request.TipoMovimiento;
             decimal valor = request.Valor;
             int numeroCuenta = request.NumeroCuenta;
-
-
 
             bool response = await _MovimientosRepository.RealizarMovimiento(numeroCuenta, valor, tipoMovimiento);
 
@@ -58,12 +70,7 @@ namespace Banco.WebApi.Core.Services
             Movimiento? movimiento = request.ToMovimiento();
 
             return movimiento.ToMovimientoResponse();
-
-
-
-
-
-
         }
+
     }
 }

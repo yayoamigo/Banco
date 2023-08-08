@@ -21,6 +21,8 @@ namespace ServiceContracts.DTO
 
         public int NumeroCuenta { get; set; }
 
+        public string? Nombre { get; set; }
+
 
 
     }
@@ -31,7 +33,7 @@ namespace ServiceContracts.DTO
         {
             return new MovimientoResponse() {  Valor = movimiento.Valor, Fecha = movimiento.Fecha,
                 MovimientoId = movimiento.MovimientoId, NumeroCuenta = movimiento.NumeroCuenta, Saldo = movimiento.Saldo, 
-                saldo_inicial = movimiento.saldo_inicial, TipoMovimiento = movimiento.TipoMovimiento };
+                saldo_inicial = movimiento.saldo_inicial, TipoMovimiento = movimiento.TipoMovimiento, Nombre = movimiento.CuentaNavigation?.Nombre };
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Banco.WebApi.Core.ServiceContracts
 {
     public interface IMovimientoGetterService
     {
-        Task<List<MovimientoResponse>> GetFilteredMovimientos(DateTime fecha, int numeroCuenta);
+        Task<List<MovimientoResponse>> GetFilteredMovimientos(DateTime fechaInicial, DateTime fechaFinal, int numeroCuenta);
     }
 }
 

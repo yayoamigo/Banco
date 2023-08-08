@@ -9,7 +9,10 @@ namespace RepositoryContracts
 
 
         Task<List<Movimiento>> GetFilteredMovimientos(Expression<Func<Movimiento, bool>> predicate);
-        
-        
+
+        Task<decimal> GetTotalRetiradoHoy(int numeroCuenta);
+
+
+
     }
 }
