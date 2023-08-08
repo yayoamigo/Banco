@@ -7,7 +7,7 @@ namespace Banco.WebApi.Entity;
 public partial class Movimiento
 {
     [Key]
-    [Required]
+ 
     public int MovimientoId { get; set; }
 
     [Required]
@@ -28,5 +28,5 @@ public partial class Movimiento
     [Required]
     public int NumeroCuenta { get; set; }
 
-    public virtual Cuenta NumeroCuentaNavigation { get; set; } = null!;
+    public virtual Cuenta? CuentaNavigation { get; set; } 
 }

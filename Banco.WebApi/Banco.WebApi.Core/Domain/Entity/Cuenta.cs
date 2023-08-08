@@ -13,6 +13,8 @@ public partial class Cuenta
     [Required]
     public int ClienteId { get; set; }
 
+    public string? Nombre { get; set; }
+
     [Required]
     public string TipoCuenta { get; set; } = null!;
 

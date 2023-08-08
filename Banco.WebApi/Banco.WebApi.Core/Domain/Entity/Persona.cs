@@ -21,5 +21,4 @@ public partial class Persona
 
     public string? Telefono { get; set; }
 
-    public virtual ICollection<Cliente> Clientes { get; set; } = new List<Cliente>();
 }
