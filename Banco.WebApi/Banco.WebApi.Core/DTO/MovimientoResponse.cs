@@ -1,31 +1,37 @@
 ﻿using Banco.WebApi.Entity;
+using System.ComponentModel.DataAnnotations;
 
 namespace ServiceContracts.DTO
 {
     public class MovimientoResponse
     {
         public int MovimientoId { get; set; }
+
         public decimal Valor { get; set; }
 
-        public override bool Equals(object? obj)
-        {
-            if (obj == null) return false;
-            if (obj.GetType() != typeof(MovimientoResponse)) return false;
-            MovimientoResponse movimiento_to_compare = (MovimientoResponse)obj;
-            return MovimientoId == movimiento_to_compare.MovimientoId && Valor == movimiento_to_compare.Valor;
-        }
+        public DateTime Fecha { get; set; }
 
-        public override int GetHashCode()
-        {
-            return base.GetHashCode();
-        }
+     
+        public string TipoMovimiento { get; set; } = null!;
+
+
+        public decimal? Saldo { get; set; }
+
+        public decimal? saldo_inicial { get; set; }
+
+        public int NumeroCuenta { get; set; }
+
+
+
     }
 
     public static class MovimientoExtensions
     {
         public static MovimientoResponse ToMovimientoResponse(this Movimiento movimiento)
         {
-            return new MovimientoResponse() { MovimientoId = movimiento.MovimientoId, Valor = movimiento.Valor };
+            return new MovimientoResponse() {  Valor = movimiento.Valor, Fecha = movimiento.Fecha,
+                MovimientoId = movimiento.MovimientoId, NumeroCuenta = movimiento.NumeroCuenta, Saldo = movimiento.Saldo, 
+                saldo_inicial = movimiento.saldo_inicial, TipoMovimiento = movimiento.TipoMovimiento };
         }
     }
 }

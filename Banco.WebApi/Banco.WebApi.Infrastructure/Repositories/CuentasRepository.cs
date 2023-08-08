@@ -50,9 +50,5 @@ public class CuentasRepository : ICuentasRepository
         return await _context.Cuenta.FindAsync(numeroCuenta);
     }
 
-    public async Task<List<Cuenta>> GetFilteredCuentas(Expression<Func<Cuenta, bool>> predicate)
-    {
-        _logger.LogInformation("Obteniendo cuentas filtradas");
-        return await _context.Cuenta.Where(predicate).ToListAsync();
-    }
+   
 }

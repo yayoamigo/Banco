@@ -13,7 +13,8 @@ public partial class Cuenta
     [Required]
     public int ClienteId { get; set; }
 
-    public string? Nombre { get; set; }
+    [Required]
+    public string Nombre { get; set; }
 
     [Required]
     public string TipoCuenta { get; set; } = null!;
@@ -21,8 +22,8 @@ public partial class Cuenta
     [Required]
     public decimal SaldoInicial { get; set; }
 
-   
-    public string? Estado { get; set; } = "Activa";
+
+    public string? Estado { get; set; } = "A";
 
     public virtual Cliente Cliente { get; set; } = null!;
 

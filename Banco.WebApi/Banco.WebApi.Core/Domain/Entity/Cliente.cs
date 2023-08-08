@@ -15,9 +15,8 @@ public partial class Cliente
     public string Contrasena { get; set; } 
     
     public string? Nombre { get; set; } 
-    public string? Estado { get; set; } = "Activo";
+    public string? Estado { get; set; } = "A";
 
     public virtual ICollection<Cuenta> Cuenta { get; set; } = new List<Cuenta>();
 
-    public virtual Persona IdentificacionNavigation { get; set; }
 }

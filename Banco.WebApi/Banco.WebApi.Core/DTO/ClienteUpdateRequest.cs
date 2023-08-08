@@ -16,12 +16,14 @@ namespace ServiceContracts.DTO
         [Required(ErrorMessage = "Contraseña can't be blank")]
         public string Contrasena { get; set; }
 
-        public string? Estado { get; set; } = "Activo";
+        public string? Nombre { get; set; }
+
+        public string? Estado { get; set; } 
 
        
         public Cliente ToCliente()
         {
-            return new Cliente() { ClienteId = ClienteId, Identificacion = Identificacion, Contrasena = Contrasena, Estado = Estado ?? "Activo" };
+            return new Cliente() { ClienteId = ClienteId, Identificacion = Identificacion, Contrasena = Contrasena, Estado = Estado ?? "Activo", Nombre = Nombre };
         }
     }
 }

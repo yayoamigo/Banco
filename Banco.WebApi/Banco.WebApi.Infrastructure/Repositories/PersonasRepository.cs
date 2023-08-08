@@ -37,11 +37,6 @@ namespace Banco.WebApi.Infrastructure.Repositories
             return await _db.Personas.FirstOrDefaultAsync(p => p.Identificacion == identificacion);
         }
 
-        public async Task<List<Persona>> GetFilteredPersonas(Expression<Func<Persona, bool>> predicate)
-        {
-            return await _db.Personas.Where(predicate).ToListAsync();
-        }
-
         public async Task<bool> DeletePersonaByIdentificacion(int identificacion)
         {
             
@@ -53,24 +48,7 @@ namespace Banco.WebApi.Infrastructure.Repositories
 
         }
 
-        public async Task<Persona> UpdatePersona(Persona persona)
-        {
-            Persona? matchingPersona = await _db.Personas.FirstOrDefaultAsync(temp => temp.Identificacion == persona.Identificacion);
-
-            if (matchingPersona == null)
-                return persona;
-
-            matchingPersona.Nombre = persona.Nombre;
-            matchingPersona.Genero = persona.Genero;
-            matchingPersona.Edad = persona.Edad;
-            matchingPersona.Direccion = persona.Direccion;
-            matchingPersona.Telefono = persona.Telefono;
-
-            int countUpdated = await _db.SaveChangesAsync();
-
-            return matchingPersona;
-        }
-
+       
        
     }
 

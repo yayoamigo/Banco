@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Banco.WebApi.Infrastructure.Repositories
 {
-    internal class MovimientosRepository : IMovimientosRepository
+    public class MovimientosRepository : IMovimientosRepository
     {
         private readonly BancoDbContext _context;
         private readonly ILogger<MovimientosRepository> _logger;
@@ -21,15 +21,22 @@ namespace Banco.WebApi.Infrastructure.Repositories
             _logger = logger;
         }
 
-        public async Task<Movimiento> AddMovimiento(Movimiento movimiento)
+        public async Task<bool> RealizarMovimiento(int numeroCuenta, decimal valor, string tipoMovimiento)
         {
-            _logger.LogInformation("Agregando un nuevo movimiento");
-            _context.Movimientos.Add(movimiento);
-            await _context.SaveChangesAsync();
-            return movimiento;
+            try
+            {
+               await  _context.RealizarMovimiento(numeroCuenta, valor, tipoMovimiento);
+                _logger.LogInformation($"Movimiento realizado con éxito en la cuenta {numeroCuenta}");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error al realizar el movimiento en la cuenta {numeroCuenta}");
+                return false;
+            }
         }
 
-       
+
 
         public async Task<List<Movimiento>> GetFilteredMovimientos(Expression<Func<Movimiento, bool>> predicate)
         {
