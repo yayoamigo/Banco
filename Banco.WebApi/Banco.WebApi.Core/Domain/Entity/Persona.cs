@@ -6,13 +6,13 @@ namespace Banco.WebApi.Entity;
 
 public partial class Persona
 {
-    [Key]   
+    [Key]
+    [Required]
     public int Identificacion { get; set; }
 
     [Required]
-    public string Nombre { get; set; }
+    public string Nombre { get; set; } = null!;
 
-    
     public string? Genero { get; set; }
 
     public int? Edad { get; set; }

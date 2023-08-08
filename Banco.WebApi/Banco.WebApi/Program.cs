@@ -1,10 +1,12 @@
 using Banco.WebApi.Entity;
 using Microsoft.EntityFrameworkCore;
+using Banco.WebApi.Infrastructure; 
+
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddDbContext<BancoContext>(options =>
+
+builder.Services.AddDbContext<BancoDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Banco")));
 builder.Services.AddControllers();
 
