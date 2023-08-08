@@ -12,7 +12,15 @@ builder.Services.AddControllers();
 
 var app = builder.Build();
 
-
+if (builder.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
+else
+{
+   
+    //app.UseExceptionHandlingMiddleware();
+}
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

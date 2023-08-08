@@ -4,6 +4,7 @@ namespace ServiceContracts.DTO
 {
     public class ClienteAddRequest
     {
+        public int ClienteId { get; set; }
         public int Identificacion { get; set; }
         public string Contrasena { get; set; } = null!;
         public string? Estado { get; set; } = "Activo";
@@ -12,6 +13,7 @@ namespace ServiceContracts.DTO
         {
             return new Cliente()
             {
+                ClienteId = ClienteId,
                 Identificacion = Identificacion,
                 Contrasena = Contrasena,
                 Estado = Estado

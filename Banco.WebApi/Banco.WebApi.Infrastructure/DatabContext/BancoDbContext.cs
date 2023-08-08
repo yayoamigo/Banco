@@ -41,10 +41,7 @@ public partial class BancoDbContext : DbContext
                 .IsUnicode(false)
                 .IsFixedLength();
 
-            entity.HasOne(d => d.IdentificacionNavigation).WithMany(p => p.Clientes)
-                .HasForeignKey(d => d.Identificacion)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Cliente__Identif__398D8EEE");
+            
         });
 
         modelBuilder.Entity<Cuenta>(entity =>
@@ -80,7 +77,7 @@ public partial class BancoDbContext : DbContext
                 .IsFixedLength();
             entity.Property(e => e.Valor).HasColumnType("decimal(18, 2)");
 
-            entity.HasOne(d => d.NumeroCuentaNavigation).WithMany(p => p.Movimientos)
+            entity.HasOne(d => d.CuentaNavigation).WithMany(p => p.Movimientos)
                 .HasForeignKey(d => d.NumeroCuenta)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK__Movimient__Numer__3F466844");
