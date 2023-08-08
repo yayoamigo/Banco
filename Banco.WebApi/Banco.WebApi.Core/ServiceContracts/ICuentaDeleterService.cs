@@ -8,5 +8,6 @@ namespace Banco.WebApi.Core.ServiceContracts
 {
     public interface ICuentaDeleterService
     {
+        Task<bool> DeleteCuentaByNumeroCuenta(int numeroCuenta);
     }
 }

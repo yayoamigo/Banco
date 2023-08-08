@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Banco.WebApi.Entity;
+using ServiceContracts.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +10,6 @@ namespace Banco.WebApi.Core.ServiceContracts
 {
     public interface IPersonaAdderService
     {
+        Task<PersonaResponse> AddPersona(PersonaAddRequest persona);
     }
 }

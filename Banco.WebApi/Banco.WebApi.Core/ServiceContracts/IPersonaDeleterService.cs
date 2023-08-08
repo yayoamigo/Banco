@@ -8,5 +8,6 @@ namespace Banco.WebApi.Core.ServiceContracts
 {
     public interface IPersonaDeleterService
     {
+        Task<bool> DeletePersonaByIdentificacion(int identificacion);
     }
 }

@@ -9,6 +9,5 @@ namespace RepositoryContracts
         Task<List<Persona>> GetAllPersonas();
         Task<Persona?> GetPersonaByIdentificacion(int identificacion);
         Task<bool> DeletePersonaByIdentificacion(int identificacion);
-        Task<Persona> UpdatePersona(Persona persona);
     }
 }

@@ -23,7 +23,7 @@ public partial class Movimiento
     
     public decimal? Saldo { get; set; }
 
-    public decimal? SaldoInicial { get; set; }
+    public decimal? saldo_inicial { get; set; }
 
     [Required]
     public int NumeroCuenta { get; set; }

@@ -19,7 +19,17 @@ builder.Services.AddScoped<IMovimientosRepository, MovimientosRepository>();
 builder.Services.AddScoped<IPersonasRepository, PersonasRepository>();
 builder.Services.AddScoped<IClienteGetterService, ClienteGetService>();
 builder.Services.AddScoped<IClienteAdderService, ClienteAddService>();
-builder.Services.AddScoped<IClienteGetterService, ClienteGetService>();
+builder.Services.AddScoped<IClienteUpdaterService, ClienteUpdateService>();
+builder.Services.AddScoped<ICuentaAdderService, CuentaAddService>();
+builder.Services.AddScoped<ICuentaDeleterService, CuentaDeleteService>();
+builder.Services.AddScoped<ICuentaGetterService, CuentaGetService>();
+builder.Services.AddScoped<IPersonaAdderService, PersonaAddService>();
+builder.Services.AddScoped<IPersonaDeleterService, PersonaDeleteService>();
+builder.Services.AddScoped<IPersonaGetterService, PersonaGetService>();
+builder.Services.AddScoped<IMovimientoAdderService, MovimientoAddService>();
+builder.Services.AddScoped<IMovimientoGetterService, MovimientoGetService>();
+
+
 
 var app = builder.Build();
 

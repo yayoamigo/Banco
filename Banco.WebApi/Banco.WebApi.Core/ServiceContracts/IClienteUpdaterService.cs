@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ServiceContracts.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,6 @@ namespace Banco.WebApi.Core.ServiceContracts
 {
     public interface IClienteUpdaterService
     {
+        Task<ClienteResponse> UpdatePersona(ClienteUpdateRequest request);
     }
 }

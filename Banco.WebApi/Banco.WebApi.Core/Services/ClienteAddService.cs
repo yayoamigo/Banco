@@ -1,4 +1,5 @@
-﻿using Banco.WebApi.Core.ServiceContracts;
+﻿using Banco.WebApi.Core.Helpers;
+using Banco.WebApi.Core.ServiceContracts;
 using Banco.WebApi.Entity;
 using Microsoft.Extensions.Logging;
 using RepositoryContracts;
@@ -27,34 +28,41 @@ namespace Banco.WebApi.Core.Services
             
             if (request == null)
             {
+                _logger.LogError("Request is null");
                 throw new ArgumentNullException(nameof(request));
+               
             }
 
             
             if (request.Identificacion == 0)
             {
+                _logger.LogError("Identificacion is null");
                 throw new ArgumentException(nameof(request.Identificacion));
             }
 
             
             if (request.Contrasena == null)
             {
+                _logger.LogError("Contrasena is null");
                 throw new ArgumentException(nameof(request.Contrasena));
             }
 
-            // Validation: ClienteId can't be duplicate
+            
             if (await _clientesRepository.GetClienteByClienteID(request.ClienteId) != null)
             {
+                _logger.LogError("Given Cliente ID already exists");
                 throw new ArgumentException("Given Cliente ID already exists");
             }
 
-            
+            ValidationHelper.ModelValidation(request);
+
+
             Cliente cliente = request.ToCliente();
 
-            // Add cliente object into _clientesRepository
-            var addedCliente = await _clientesRepository.AddCliente(cliente);
+            
+            await _clientesRepository.AddCliente(cliente);
 
-            return addedCliente.ToClienteResponse();
+            return cliente.ToClienteResponse();
         }
 
 
