@@ -19,5 +19,4 @@ public partial class Cliente
 
     public virtual ICollection<Cuenta> Cuenta { get; set; } = new List<Cuenta>();
 
-    public virtual Persona IdentificacionNavigation { get; set; }
 }

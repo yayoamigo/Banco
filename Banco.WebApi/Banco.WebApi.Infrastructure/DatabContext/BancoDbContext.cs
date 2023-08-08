@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Banco.WebApi.Entity;
+using Microsoft.Data.SqlClient;
 
 namespace Banco.WebApi.Infrastructure;
 
@@ -103,4 +104,16 @@ public partial class BancoDbContext : DbContext
     }
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+
+    public async Task<int> RealizarMovimiento(int numeroCuenta, decimal valor, string tipoMovimiento)
+    {
+        SqlParameter[] parameters = new SqlParameter[] {
+        new SqlParameter("@NumeroCuenta", numeroCuenta),
+        new SqlParameter("@Valor", valor),
+        new SqlParameter("@TipoMovimiento", tipoMovimiento)
+    };
+
+        return await Database.ExecuteSqlRawAsync("EXECUTE RealizarMovimiento @NumeroCuenta, @Valor, @TipoMovimiento", parameters);
+    }
+
 }

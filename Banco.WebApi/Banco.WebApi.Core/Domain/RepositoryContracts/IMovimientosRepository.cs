@@ -5,8 +5,9 @@ namespace RepositoryContracts
 {
     public interface IMovimientosRepository
     {
-        Task<Movimiento> AddMovimiento(Movimiento movimiento);
-        
+        Task<bool> RealizarMovimiento(int numeroCuenta, decimal valor, string tipoMovimiento);
+
+
         Task<List<Movimiento>> GetFilteredMovimientos(Expression<Func<Movimiento, bool>> predicate);
         
         

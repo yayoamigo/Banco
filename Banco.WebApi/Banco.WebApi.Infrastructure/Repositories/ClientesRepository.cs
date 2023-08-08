@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Banco.WebApi.Infrastructure.Repositories
 {
-    internal class ClientesRepository : IClientesRepository
+    public class ClientesRepository : IClientesRepository
     {
         private readonly BancoDbContext _context;
         private readonly ILogger<ClientesRepository> _logger;
@@ -53,12 +53,6 @@ namespace Banco.WebApi.Infrastructure.Repositories
         {
             _logger.LogInformation($"Obteniendo cliente con ID: {clienteID}");
             return await _context.Clientes.FindAsync(clienteID);
-        }
-
-        public async Task<List<Cliente>> GetFilteredClientes(Expression<Func<Cliente, bool>> predicate)
-        {
-            _logger.LogInformation("Obteniendo clientes filtrados");
-            return await _context.Clientes.Where(predicate).ToListAsync();
         }
 
         public async Task<Cliente> UpdateCliente(Cliente cliente)

@@ -37,11 +37,6 @@ namespace Banco.WebApi.Infrastructure.Repositories
             return await _db.Personas.FirstOrDefaultAsync(p => p.Identificacion == identificacion);
         }
 
-        public async Task<List<Persona>> GetFilteredPersonas(Expression<Func<Persona, bool>> predicate)
-        {
-            return await _db.Personas.Where(predicate).ToListAsync();
-        }
-
         public async Task<bool> DeletePersonaByIdentificacion(int identificacion)
         {
             
