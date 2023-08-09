@@ -5,7 +5,7 @@ using Banco.WebApi.Core.ServiceContracts;
 using Banco.WebApi.Core.Services;
 using Banco.WebApi.Infrastructure.Repositories;
 using RepositoryContracts;
-
+using Banco.WebApi.UI.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -40,7 +40,7 @@ if (builder.Environment.IsDevelopment())
 else
 {
    
-    //app.UseExceptionHandlingMiddleware();
+    app.UseExceptionHandlingMiddleware();
 }
 app.UseHttpsRedirection();
 
@@ -49,3 +49,4 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+public partial class Program { }
