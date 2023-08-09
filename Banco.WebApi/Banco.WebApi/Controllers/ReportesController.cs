@@ -20,14 +20,15 @@ namespace Banco.WebApi.UI.Controllers
             _movimientoGetService = movimientoGetService ?? throw new ArgumentNullException(nameof(movimientoGetService));
         }
         [HttpGet]
-        public async Task<IActionResult> GetFilteredMovimientos([FromQuery] DateTime fecha, [FromQuery] int numeroCuenta)
+        public async Task<IActionResult> GetFilteredMovimientos([FromQuery] DateTime fechaInicial, [FromQuery] DateTime fechaFinal, [FromQuery] int numeroCuenta)
         {
             try
             {
-                var movimientos = await _movimientoGetService.GetFilteredMovimientos(fecha, numeroCuenta);
+              
+                var movimientos = await _movimientoGetService.GetFilteredMovimientos(fechaInicial, fechaFinal, numeroCuenta);
                 if (movimientos.Count == 0)
                 {
-                    return NotFound($"No se encontraron movimientos para la fecha {fecha} y el número de cuenta {numeroCuenta}.");
+                    return NotFound($"No se encontraron movimientos en el rango de fechas {fechaInicial} a {fechaFinal} para el número de cuenta {numeroCuenta}.");
                 }
                 return Ok(movimientos);
             }
@@ -36,6 +37,7 @@ namespace Banco.WebApi.UI.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+
 
     }
 }

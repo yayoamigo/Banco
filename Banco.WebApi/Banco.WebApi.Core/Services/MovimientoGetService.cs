@@ -20,12 +20,13 @@ namespace Banco.WebApi.Core.Services
             _MovimientosRepository = repository;
         }
 
-        public async Task<List<MovimientoResponse>> GetFilteredMovimientos(DateTime fecha, int numeroCuenta)
+        public async Task<List<MovimientoResponse>> GetFilteredMovimientos(DateTime fechaInicial, DateTime fechaFinal, int numeroCuenta)
         {
-            Expression<Func<Movimiento, bool>> predicate = m => m.Fecha.Date == fecha.Date && m.NumeroCuenta == numeroCuenta;
+            Expression<Func<Movimiento, bool>> predicate = m => m.Fecha.Date >= fechaInicial.Date && m.Fecha.Date <= fechaFinal.Date && m.NumeroCuenta == numeroCuenta;
             List<Movimiento> movimientos = await _MovimientosRepository.GetFilteredMovimientos(predicate);
 
             return movimientos.Select(m => m.ToMovimientoResponse()).ToList();
         }
+
     }
 }

@@ -44,5 +44,21 @@ namespace Banco.WebApi.Infrastructure.Repositories
             return await _context.Movimientos.Include("CuentaNavigation")
             .Where(predicate).ToListAsync();
         }
+
+        public async Task<decimal> GetTotalRetiradoHoy(int numeroCuenta)
+        {
+            _logger.LogInformation($"Obteniendo total retirado hoy para la cuenta {numeroCuenta}");
+
+            DateTime startOfDay = DateTime.Today;
+            DateTime endOfDay = startOfDay.AddDays(1).AddTicks(-1);
+
+            return await _context.Movimientos
+                .Where(m => m.NumeroCuenta == numeroCuenta
+                            && m.Valor < 0
+                            && m.Fecha >= startOfDay
+                            && m.Fecha <= endOfDay)
+                .SumAsync(m => m.Valor);
+        }
+
     }
 }
