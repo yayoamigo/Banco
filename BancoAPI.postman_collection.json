@@ -1,0 +1,214 @@
+{
+	"info": {
+		"_postman_id": "89be3c51-960a-442c-958d-e899422172d0",
+		"name": "BancoAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25330536",
+		"_collection_link": "https://www.postman.com/aviation-cosmonaut-2562102/workspace/banco/collection/25330536-89be3c51-960a-442c-958d-e899422172d0?action=share&creator=25330536&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Post Persona",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"Identificacion\": 123456733,\r\n      \"Nombre\": \"Juan Pérez Lopez\",\r\n      \"Genero\": \"M\",\r\n      \"Edad\": 30,\r\n      \"Direccion\": \"Calle Principal 123\",\r\n      \"Telefono\": \"123-456-7890\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5260/api/Personas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5260",
+					"path": [
+						"api",
+						"Personas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Reportes",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"TipoMovimiento\": \"Débito\",\r\n    \"Valor\": -500.00,\r\n    \"NumeroCuenta\": 1001\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5260/api/Reportes?fechaInicial=2023-08-08&fechaFinal=2023-08-08&numeroCuenta=1001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5260",
+					"path": [
+						"api",
+						"Reportes"
+					],
+					"query": [
+						{
+							"key": "fechaInicial",
+							"value": "2023-08-08"
+						},
+						{
+							"key": "fechaFinal",
+							"value": "2023-08-08"
+						},
+						{
+							"key": "numeroCuenta",
+							"value": "1001"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Personas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5260/api/Personas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5260",
+					"path": [
+						"api",
+						"Personas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Cliente",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"ClienteId\": 1,\r\n      \"Identificacion\": 123456733,\r\n      \"Contrasena\": \"password\",\r\n      \"Nombre\": \"Juan Pérez Lopez\",\r\n      \"Estado\": \"A\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5260/api/Clientes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5260",
+					"path": [
+						"api",
+						"Clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get cliente by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5260/api/Clientes/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5260",
+					"path": [
+						"api",
+						"Clientes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Cuenta",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n      \"NumeroCuenta\": 123456789,\r\n      \"ClienteId\": 10,\r\n      \"Nombre\": \"Cuenta de Ahorro\",\r\n      \"TipoCuenta\": \"Ahorro\",\r\n      \"SaldoInicial\": 5000,\r\n      \"Estado\": \"A\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5260/api/Cuentas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5260",
+					"path": [
+						"api",
+						"Cuentas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Cuenta by NumeroCuenta",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5260/api/Cuentas/1234567891",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5260",
+					"path": [
+						"api",
+						"Cuentas",
+						"1234567891"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post movimiento",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
